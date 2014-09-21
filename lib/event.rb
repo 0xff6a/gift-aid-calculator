@@ -2,8 +2,8 @@ class Event
 
   PROMOTED_TYPES = 
   {
-    running:  5,
-    swimming: 3
+    running:  5.0,
+    swimming: 3.0
   }
 
   attr_reader :type
@@ -12,8 +12,8 @@ class Event
     @type = set(event_type)
   end
 
-  def promoted?(event_type)
-    PROMOTED_TYPES.include?(event_type)
+  def promoted?
+    promoted_type?(type)
   end
 
   def gift_aid_supplement
@@ -22,8 +22,12 @@ class Event
 
   private
 
+  def promoted_type?(event_type)
+    PROMOTED_TYPES.include?(event_type)
+  end
+
   def set(event_type)
-    promoted?(event_type) ? set_as(event_type): set_as_default
+    promoted_type?(event_type) ? set_as(event_type): set_as_default
   end
 
   def set_as(event_type)

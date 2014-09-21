@@ -4,7 +4,7 @@ describe GiftAidCalculator do
 
   let(:tax_rate)      { GiftAidCalculator::DEFAULT_TAX_RATE                 }
   let(:new_tax_rate)  { 30                                                  }
-  let(:donation)      { 7.297                                               }
+  let(:donation)      { 7.294                                               }
   let(:admin)         { double Admin, administrator?: true                  }
   let(:user)          { double User, administrator?: false                  }
 
@@ -56,8 +56,9 @@ describe GiftAidCalculator do
   context 'event type modifier' do
 
     it 'should add 5% supplement to gift aid for donations for running events' do
+      event = double Event, gift_aid_supplement: 5.0, promoted?: true
       default_gift_aid = GiftAidCalculator.gift_aid_for(donation)
-      expect(GiftAidCalculator.gift_aid_for(donation)).to eq expected_amount 
+      expect(GiftAidCalculator.gift_aid_for(donation, event)).to eq (default_gift_aid * 1.05).round(2)
     end
 
   end
