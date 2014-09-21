@@ -5,7 +5,7 @@ class GiftAidCalculator
   DEFAULT_TAX_RATE = 20.0
   DEFAULT_ROUNDING = 2
 
-  @tax_rate = DEFAULT_TAX_RATE.to_f
+  @tax_rate = DEFAULT_TAX_RATE
 
   class << self
 

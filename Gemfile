@@ -7,4 +7,6 @@ group :development, :test do
   gem 'dotenv'
   gem 'rspec'
   gem 'shotgun'
+  gem 'capybara'
+  gem 'cucumber-sinatra'
 end
