@@ -1,2 +1,10 @@
-gem "codeclimate-test-reporter", group: :test, require: nil
-gem 'dotenv', :groups => [:development, :test]
+source 'http://rubygems.org'
+gem 'sinatra'
+gem 'thin'
+
+group :development, :test do
+  gem 'codeclimate-test-reporter'
+  gem 'dotenv'
+  gem 'rspec'
+  gem 'shotgun'
+end
