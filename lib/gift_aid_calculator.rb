@@ -14,7 +14,7 @@ class GiftAidCalculator
   end
 
   def self.update_tax_rate(new_tax_rate, user)
-    @@tax_rate = new_tax_rate if user.administrator?
+    set_tax_rate_to(new_tax_rate) if user.administrator?
   end
 
   def self.simple_gift_aid_calculation(donation_amount)
@@ -25,7 +25,12 @@ class GiftAidCalculator
     tax_rate / (100 - tax_rate)
   end
 
+  def self.set_tax_rate_to(new_tax_rate)
+    @@tax_rate = new_tax_rate 
+  end
+
   private_class_method  :simple_gift_aid_calculation,
-                        :gift_aid_multiplier
+                        :gift_aid_multiplier,
+                        :set_tax_rate_to
 
 end
