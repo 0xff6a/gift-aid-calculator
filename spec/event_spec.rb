@@ -19,16 +19,16 @@ describe Event do
 
   context '#gift_aid_supplement' do
 
-    it 'should return 5% for running events' do
+    it 'should return 5 for running events' do
       expect(event.gift_aid_supplement).to eq 5
     end
 
-    it 'should return 3% for swimming events' do
+    it 'should return 3 for swimming events' do
       swim_event = Event.new(:swimming)
       expect(swim_event.gift_aid_supplement).to eq 3
     end
 
-    it 'should return 0% for other events' do
+    it 'should return 0 for other events' do
       expect(other_event.gift_aid_supplement).to eq 0
     end
   

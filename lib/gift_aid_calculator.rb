@@ -24,7 +24,7 @@ class GiftAidCalculator
   end
 
   def self.raw_gift_aid_calculation(donation_amount, event)
-    (gift_aid_factor(event) * donation_amount)
+    donation_amount * gift_aid_factor(event)
   end
 
   def self.gift_aid_factor(event)

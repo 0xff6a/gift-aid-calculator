@@ -1,47 +1,35 @@
+Technical Test: Gift Aid Calculator
+===================================
+
+[![Code Climate](https://codeclimate.com/github/foxjerem/gift-aid-calculator/badges/gpa.svg)](https://codeclimate.com/github/foxjerem/gift-aid-calculator) [![Test Coverage](https://codeclimate.com/github/foxjerem/gift-aid-calculator/badges/coverage.svg)](https://codeclimate.com/github/foxjerem/gift-aid-calculator)
+
+Ruby Version:
+-------------
+Ruby 2.1.2
+
+Objectives:
+-----------
+- Create a simple gift aid calculator to be calculated as donation_amount * ( tax_rate / (100 - tax_rate ) )
+- Allow an admin user to update the tax rate
+- Ensure rounding to two decimal places
+- Allow gift aid to be supplemented based on event type
+
 Classes:
 --------
-GiftAidCalculator: calculates gift aid from inputs
-User: can calculate gift aid
-Admin: can alter the tax rate
-Event: can supplement gift aid based on type
+- GiftAidCalculator: calculates gift aid from inputs
+- User: cannot alter the tax rate
+- Admin: can alter the tax rate
+- Event: can supplement gift aid based on type
 
-Story 1
+Workings:
+---------
+WIP
 
-As a donor
-I want to see my gift aid calculated according to the current tax rate
-So that I know how much extra cash the charity will make
+Running the test suite:
+-----------------------
+$ bundle
+$ rspec from root
 
-Acceptance criteria
-
-Gift aid calculated at a tax rate of 20%.
-Supported by unit tests.
-Story 2
-
-As a site administrator
-I want to be able to change the applicable tax rate
-So that I don't need to change the code when the tax rate changes
-
-Acceptance criteria
-
-Current Tax Rate is retrieved from data store.
-Gift Aid amount is calculated based on the current amount in the data store.
-Story 3
-
-As a donor
-I want to see my gift aid amount rounded correctly to 2 decimal places
-So that I'm not confused about how much will be paid to the charity
-
-Acceptance criteria
-
-Gift aid amount correctly rounded to 2 decimal places (1.316 should round to 1.32).
-Story 4
-
-As an events promoter
-I want to supplement gift aid payments based on event type
-So that people will feel inspired to donate to these event types
-
-Acceptance criteria
-
-5% supplement added for donations to "running" events.
-3% supplement added for donations to "swimming" events.
-No supplement should be applied for other events.
+Running the application:
+------------------------
+WIP

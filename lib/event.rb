@@ -35,7 +35,7 @@ class Event
   end
 
   def set_as_default
-    @type = :default
+    set_as(:default)
   end
 
 end
