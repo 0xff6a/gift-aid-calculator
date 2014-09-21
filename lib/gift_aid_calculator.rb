@@ -1,0 +1,3 @@
+class GiftAidCalculator
+
+end
