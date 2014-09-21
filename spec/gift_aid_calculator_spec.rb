@@ -12,7 +12,7 @@ describe GiftAidCalculator do
 
   context 'initialisation' do
 
-    it 'should have a default tax rate of 20%' do
+    it 'should have a default tax rate of 20' do
       expect(GiftAidCalculator.tax_rate).to eq 20
     end
 
@@ -20,8 +20,8 @@ describe GiftAidCalculator do
 
   context '#gift_aid_for' do
 
-    it 'should return gift aid assuming for the default tax rate' do
-      expected_amount = (donation * ( tax_rate / (100 - tax_rate) )).round(2) 
+    it 'should return gift aid amount based on tax rate and donation' do
+      expected_amount = _gift_aid(donation, tax_rate)
       expect(GiftAidCalculator.gift_aid_for(donation)).to eq expected_amount 
     end
 
@@ -46,7 +46,7 @@ describe GiftAidCalculator do
     end
 
     it 'gift aid amount is calculated based on current tax rate in data store' do
-      expected_amount = donation * ( new_tax_rate / (100 - new_tax_rate) ) 
+      expected_amount = _gift_aid(donation, new_tax_rate)
       GiftAidCalculator.update_tax_rate(new_tax_rate, admin)
       expect(GiftAidCalculator.gift_aid_for(donation)).to eq expected_amount 
     end
@@ -55,12 +55,22 @@ describe GiftAidCalculator do
 
   context 'event type modifier' do
 
-    it 'should add 5% supplement to gift aid for donations for running events' do
+    it 'should add appropriate supplement to gift aid for donations for promoted events' do
       event = double Event, gift_aid_supplement: 5.0, promoted?: true
       default_gift_aid = GiftAidCalculator.gift_aid_for(donation)
       expect(GiftAidCalculator.gift_aid_for(donation, event)).to eq (default_gift_aid * 1.05).round(2)
     end
 
+    it 'should add not add a supplement for events not promoted' do
+      event = double Event, gift_aid_supplement: 5.0, promoted?: false
+      default_gift_aid = GiftAidCalculator.gift_aid_for(donation)
+      expect(GiftAidCalculator.gift_aid_for(donation, event)).to eq default_gift_aid
+    end
+
+  end
+
+  def _gift_aid(donation, tax_rate)
+    (donation * ( tax_rate / (100 - tax_rate) )).round(2)
   end
   
 end

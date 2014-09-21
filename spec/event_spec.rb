@@ -5,7 +5,7 @@ describe Event do
   let(:event)       { Event.new(:running) }
   let(:other_event) { Event.new(:bowling) }
 
-  context 'Initialisation' do
+  context 'initialisation' do
     
     it 'should have a type' do
       expect(event.type).to eq :running
