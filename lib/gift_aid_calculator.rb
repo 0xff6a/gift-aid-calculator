@@ -47,7 +47,7 @@ class GiftAidCalculator
     end
 
     def supplement_factor_for(event)
-      ( 1 + event.gift_aid_supplement / 100 )
+      (1 + event.gift_aid_supplement / 100)
     end
 
     def default_event
