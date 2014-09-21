@@ -4,7 +4,7 @@ describe GiftAidCalculator do
 
   let(:tax_rate)      { GiftAidCalculator::DEFAULT_TAX_RATE                 }
   let(:new_tax_rate)  { 30                                                  }
-  let(:donation)      { 10                                                  }
+  let(:donation)      { 7.297                                                  }
   let(:admin)         { double Admin, administrator?: true                  }
   let(:user)          { double User, administrator?: false                  }
 
@@ -21,8 +21,14 @@ describe GiftAidCalculator do
   context '#gift_aid_for' do
 
     it 'should return gift aid assuming for the default tax rate' do
-      expected_amount = donation * ( tax_rate / (100 - tax_rate) ) 
+      expected_amount = (donation * ( tax_rate / (100 - tax_rate) )).round(2) 
       expect(GiftAidCalculator.gift_aid_for(donation)).to eq expected_amount 
+    end
+
+    it 'gift aid amount should be rounded to 2 decimal places' do
+      amount, rounded_amount = 1.23456, 1.23
+      expect(GiftAidCalculator).to receive(:simple_gift_aid_calculation).and_return(amount)
+      expect(GiftAidCalculator.gift_aid_for(donation)).to eq rounded_amount 
     end
 
   end
