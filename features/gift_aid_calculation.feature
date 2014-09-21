@@ -1,4 +1,4 @@
-Feature: Stories 1 & 2
+Feature: Stories 1 & 3
   As a donor
   I want to see my gift aid calculated according to the current tax rate
   So that I know how much extra cash the charity will make
