@@ -27,7 +27,7 @@ describe GiftAidCalculator do
 
     it 'gift aid amount should be rounded to 2 decimal places' do
       amount, rounded_amount = 1.23456, 1.23
-      expect(GiftAidCalculator).to receive(:simple_gift_aid_calculation).and_return(amount)
+      expect(GiftAidCalculator).to receive(:raw_gift_aid_calculation).and_return(amount)
       expect(GiftAidCalculator.gift_aid_for(donation)).to eq rounded_amount 
     end
 
