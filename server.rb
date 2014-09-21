@@ -7,34 +7,64 @@ class GiftAidCalculatorApplication < Sinatra::Base
   CALCULATOR = GiftAidCalculator
 
   get '/' do
-    @tax_rate = CALCULATOR.tax_rate.round(2)
+    @tax_rate = get_tax_rate
     erb :index
   end
 
   post '/calculate' do
-    event = Event.new(params[:event_type].to_sym)
-    amount = params[:donation].to_f
-    @gift_aid_amount = CALCULATOR.gift_aid_for(amount, event)
+    @gift_aid_amount = calculate_gift_aid_from(params)
     erb :show
   end
 
   get '/tax_rate/update' do
-    @tax_rate = CALCULATOR.tax_rate.round(2)
+    @tax_rate = get_tax_rate
     erb :update
   end
 
   post '/tax_rate/update' do
-    if params[:credentials] == VALID_AUTHORISATION_STRING
-      admin = Admin.new
-      CALCULATOR.update_tax_rate(params[:new_tax_rate].to_i, admin)
-      redirect '/'
-    else
-      'ERROR'
-    end
-    
+    authenticated?(params[:credentials]) ? authentication_success(params) : authentication_error
   end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
+
+  private
+
+  def authenticated?(credentials)
+     credentials == VALID_AUTHORISATION_STRING
+  end
+
+  def get_tax_rate
+    CALCULATOR.tax_rate.round(2)
+  end
+
+  def calculate_gift_aid_from(params)
+    CALCULATOR.gift_aid_for(donation_from(params), event_from(params))
+  end
+
+  def event_from(params)
+    Event.new(params[:event_type].to_sym)
+  end
+
+  def donation_from(params)
+    params[:donation].to_f
+  end
+
+  def update_tax_rate_from(params)
+    CALCULATOR.update_tax_rate(params[:new_tax_rate].to_f, new_admin)
+  end
+
+  def new_admin
+    Admin.new
+  end
+
+  def authentication_success(params)
+    update_tax_rate_from(params)
+    redirect '/'
+  end
+
+  def authentication_error
+    'ERROR: Invalid Authorisation String'
+  end
   
 end
