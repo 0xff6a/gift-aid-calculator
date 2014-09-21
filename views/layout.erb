@@ -5,14 +5,16 @@
   </head>
   <body>
     <header>
-      <h1>Gift Aid Calculator 1.0</h1>
       <nav>
-        <a href='/tax_rate/update'>Update Tax Rate</a>
+        <a href='/'><h1>Gift Aid Calculator 1.0</h1></a>
+        <a href='/tax_rate/update' id='update_link'>Update Tax Rate</a>
       </nav>
     </header>
 
     <main>
-      <%= yield %>
+      <section class='container'>
+        <%= yield %>
+      <section>
     </main>
 
   </body>

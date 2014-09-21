@@ -51,11 +51,15 @@ class GiftAidCalculatorApplication < Sinatra::Base
   end
 
   def update_tax_rate_from(params)
-    CALCULATOR.update_tax_rate(params[:new_tax_rate].to_f, new_admin)
+    CALCULATOR.update_tax_rate(tax_rate_from(params), new_admin)
   end
 
   def new_admin
     Admin.new
+  end
+
+  def tax_rate_from(params)
+    params[:new_tax_rate].gsub('%','').to_f
   end
 
   def authentication_success(params)
@@ -64,7 +68,7 @@ class GiftAidCalculatorApplication < Sinatra::Base
   end
 
   def authentication_error
-    'ERROR: Invalid Authorisation String'
+    erb "<h2 class='error'>ERROR: Invalid Authorisation String</h2>"
   end
   
 end
