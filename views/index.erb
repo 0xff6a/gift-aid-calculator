@@ -1,9 +1,11 @@
+<h2>Current tax rate: <%= @tax_rate %>%</h2>
+
 <form action='/calculate' method='post'>
-  <input type='text' name='donation' placeholder='Donation amount'>
+  <input type='text' name='donation' placeholder='Donation amount'></br>
   <select name='event_type'>
     <option value='swimming'>swimming</option>
     <option value='running'>running</option>
     <option value='other' selected>other</option>
-  </select>
-  <input type='submit' value='Calculate'>
+  </select></br>
+  <input type='submit' value='Calculate'></br>
 </form>

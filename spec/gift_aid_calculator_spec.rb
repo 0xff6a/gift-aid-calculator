@@ -3,7 +3,7 @@ require 'gift_aid_calculator'
 describe GiftAidCalculator do
 
   let(:tax_rate)      { GiftAidCalculator::DEFAULT_TAX_RATE                 }
-  let(:new_tax_rate)  { 30                                                  }
+  let(:new_tax_rate)  { 30.0                                                  }
   let(:donation)      { 7.294                                               }
   let(:admin)         { double Admin, administrator?: true                  }
   let(:user)          { double User, administrator?: false                  }
