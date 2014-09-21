@@ -9,7 +9,7 @@ Ruby 2.1.2
 
 Objectives:
 -----------
-- Create a simple gift aid calculator to be calculated as donation_amount * ( tax_rate / (100 - tax_rate ) )
+- Create a simple gift aid calculator to be calculated as:  donation_amount * ( tax_rate / (100 - tax_rate ) )
 - Allow an admin user to update the tax rate
 - Ensure rounding to two decimal places
 - Allow gift aid to be supplemented based on event type
@@ -27,8 +27,8 @@ WIP
 
 Running the test suite:
 -----------------------
-$ bundle
-$ rspec from root
+- $ bundle
+- $ rspec from root
 
 Running the application:
 ------------------------
