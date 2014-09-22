@@ -28,7 +28,7 @@ Workings:
 ---------
 - Worked in pure TDD style throughout and ensured thorough test coverage
 - Started with a single class to complete the first user story and added additional classes as complexity grew to maintain single responsibility
-- Created user and admin class to update tax rate to for extensibility and to ensure code remained semantically rich (vs a simple admin/user input to GiftAidCalculator functions)
+- Created user and admin class to update tax rate for extensibility and to ensure code remained semantically rich (vs a simple admin/user input to GiftAidCalculator functions)
 - Command line interface to demonstrate functionality would have been clunky and inflexible so created simple sinatra web app instead
 - Created cucumber feature tests based on stories provided
 
