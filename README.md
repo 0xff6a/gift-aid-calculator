@@ -50,7 +50,7 @@ $ rspec
 
 Running the application:
 ------------------------
-From root directory opens the application on http://localhost:9292/:
+From root directory opens the application on http://localhost:9292/. Authentication string to change tax rate is 'JGHackers'.
 
 ```shell
 $ bundle
